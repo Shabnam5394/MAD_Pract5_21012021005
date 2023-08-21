@@ -4,8 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock
+import android.provider.CallLog
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.app.NotificationCompat.Action
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -26,19 +30,35 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    fun opencall(num:String){
+    fun opencall(no:String){
+        Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:$no")).also {
+            startActivity(it);
+        }
 
     }
     fun opencallLog(){
+        Intent(Intent.ACTION_VIEW).setType(CallLog.Calls.CONTENT_TYPE).also{
+            startActivity(it);
+        }
 
     }
     fun opengalary(){
+        Intent(Intent.ACTION_VIEW).setType("image/*").also{
+            startActivity(it);
+        }
+
 
     }
     fun opencamera(){
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also{
+            startActivity(it);
+        }
 
     }
     fun openAlarm(){
+        Intent(AlarmClock.ACTION_SHOW_ALARMS).also{
+            startActivity(it);
+        }
 
     }
 }
